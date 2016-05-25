@@ -1,0 +1,7 @@
+<form action="" method="post">
+    <input type="hidden" name="id" value="{{ post.id }}">
+    Title <input type="text" name="title" value="{{ post.title }}"><br/>
+    Trailer <textarea rows=10 cols=100 name="trailer">{{ post.trailer }}</textarea><br/>
+    Content <textarea rows=20 cols=100 name="content">{{ post.content }}</textarea><br/>
+    <input type="submit" value="Odoslat">
+</form>

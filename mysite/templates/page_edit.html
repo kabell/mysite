@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Addpage</title>
+</head>
+<body>
+    <form method="post" action="">
+        <input type="hidden" name="id" value="{{ page.id }}">
+        Pagename <input type="text" name="page" value="{{ page.page }}"/><br/>
+        Title <input type="text" name="title" value="{{ page.title }}"/><br/>
+        Content <textarea rows="20" cols="100" name="content" >{{ page.content }}</textarea><br/>
+        Generator <input type="text" name="generator" value="{{ page.generator }}"><br/>
+        Visible <input type="checkbox" name="visible" checked="true"><br/>
+        <input type="submit" value="odoslat"/>
+    </form>
+</body>
+</html>
