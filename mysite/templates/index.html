@@ -32,7 +32,7 @@
 
                 {% for page in menu %}
                 <li class="{% if page.id == id %}active{% else %}inactive{% endif %}">
-                    <a href="/page={{ page.page }}">{%  if language == "sk" %}{{ page.sk }}{% else %}{{ page.en }}{% endif %} </a></li>
+                    <a href="page={{ page.page }}">{%  if language == "sk" %}{{ page.sk }}{% else %}{{ page.en }}{% endif %} </a></li>
                 {% endfor %}
 
                 <li class="inactive"><a href="#" onClick="change_language(); return false;">{% if language == "en" %}Slovak{% else %}English{% endif %}</a></li>
