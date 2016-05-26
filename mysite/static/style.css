@@ -29,6 +29,16 @@
         text-decoration: none;
     }
 
+
+img{
+    margin:5px 5px 5px 5px;
+}
+
+p{
+    display: block;
+}
+
+
 .nav-pills > .inactive,
 .nav-pills > .inactive > a,
 .nav-pills > .inactive > a:focus {
