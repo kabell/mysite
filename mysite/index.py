@@ -67,7 +67,34 @@ def blog_post(request,args):
     html = template.render(Context(locals()))
     return html
 
+def menu_edit(request,args):
+    if request.POST:
+        id = request.POST.get(key='id')
+        page = request.POST.get(key='page')
+        sk = request.POST.get(key='sk')
+        en = request.POST.get(key='en')
+        deleted = request.POST.get(key='deleted')
+        if deleted == None:
+            deleted = False
+        item = MenuItem.objects.get(id=id)
+        item.page = page
+        item.sk = sk
+        item.en = en
+        item.deleted = deleted
+        item.save()
 
+    args = parse_args(args)
+    id = args['id'];
+    item = MenuItem.objects.get(id=id)
+    template = get_template('menuedit.html')
+    html = template.render(Context(locals()))
+    return html
+
+def menu_show(request,args):
+    items = MenuItem.objects.all()
+    template = get_template('menushow.html')
+    html = template.render(Context(locals()))
+    return html
 
 
 def change_language(request):
@@ -99,12 +126,12 @@ def page(request, id = 1, args=""):
         #generate page by generator
         if generator != "":
             try:
-                page_template = Template(eval(generator+"(request,args)"))
+                html = eval(generator+"(request,args)")
             except AttributeError:
-                page_template = Template(content)
+                html = Template(content).render(Context(locals()))
         else:
-            page_template = Template(content)
-        html = page_template.render(Context(locals()))
+            html = Template(content).render(Context(locals()))
+
 
         #generate full page
         menu = MenuItem.objects.filter(deleted=False)
@@ -153,7 +180,9 @@ def page_edit(request,args):
         page.save()
 
     page = Page.objects.get(id=args['id'])
+
     template = get_template('page_edit.html')
+
     html = template.render(Context(locals()))
     return html
 

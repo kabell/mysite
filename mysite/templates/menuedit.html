@@ -1,0 +1,9 @@
+<a href="page=menushow">Späť na zoznam menu</a>
+<form method="post" action="">
+    <input type="hidden" name="id" value="{{ item.id }}">
+    Page <input type="text" name="page" value="{{ item.page }}">
+    SK <input type="text" name="sk" value="{{ item.sk }}">
+    EN <input type="text" name="en" value="{{ item.en }}">
+    Deleted <input type="checkbox" name="deleted" value="True" {% if item.deleted %}checked{% endif %}>
+    <input type="submit" value="Submit">
+</form>
