@@ -6,5 +6,6 @@
         Content <textarea rows="20" cols="100" name="content" >{{ page.content }}</textarea><br/>
         Generator <input type="text" name="generator" value="{{ page.generator }}"><br/>
         Visible <input type="checkbox" name="visible" value="True" {% if page.visible %}checked{% endif %}><br/>
+        Deleted <input type="checkbox" name="deleted" value="True" {% if page.deleted %}checked{% endif %}><br/>
         <input type="submit" value="odoslat"/>
     </form>

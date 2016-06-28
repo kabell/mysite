@@ -110,9 +110,9 @@ def page(request, id = 1, args=""):
         id=str(id)
         try:
             if id.isdigit():
-                page_item = Page.objects.get(id=id)
+                page_item = Page.objects.get(id=id,deleted=False)
             else:
-                page_item = Page.objects.get(page=id)
+                page_item = Page.objects.get(page=id,deleted=False)
         except ObjectDoesNotExist:
             return page(request, 0)
         id = page_item.id
@@ -167,8 +167,12 @@ def page_edit(request,args):
         content = request.POST.get(key="content")
         generator = request.POST.get(key="generator")
         visible = request.POST.get(key="visible")
+        deleted = request.POST.get(key="deleted")
         if visible == None:
             visible = False
+        if deleted == None:
+            deleted = False
+
 
         #print title, content, generator, visible
         page = Page.objects.get(id=id)
@@ -177,6 +181,7 @@ def page_edit(request,args):
         page.content = content
         page.generator = generator
         page.visible = visible
+        page.deleted = deleted
         page.save()
 
     page = Page.objects.get(id=args['id'])
@@ -185,4 +190,6 @@ def page_edit(request,args):
 
     html = template.render(Context(locals()))
     return html
+
+
 
